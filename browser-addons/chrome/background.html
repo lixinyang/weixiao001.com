@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<!--
+监控各个Tab页地址栏的变化，如果包含了我们支持的购物网站，那么就提醒用户
+-->
+<script type="text/javascript" src="http://weixiao001.com/js/weixiao.js"></script>
+
+<script>
+var alert_log = {};
+function processUrl(tab) {
+    console.log(tab.url);
+    var url = tab.url;
+    var weblist = weixiao.merchant_list;
+    for(web in weblist) {
+        if(url.indexOf(weblist[web].domain)!=-1) {
+    		//一个站点只提醒一次
+        	if(!alert_log[weblist[web].domain]) {
+            	alert('笑友，您正在访问 '+weblist[web].name+' ，请确认从微笑网公益购物进入哦！');
+            	alert_log[weblist[web].domain] = true;
+        	}
+        	break;
+        }
+    }
+}
+
+chrome.tabs.onUpdated.addListener(function(tabId, props, tab) {
+  if (props.status == "complete") processUrl(tab);
+});
+chrome.tabs.onSelectionChanged.addListener(function(tabId, props) {
+  chrome.tabs.get(tabId, processUrl);
+});
+chrome.tabs.getSelected(null, function(tab) {
+  processUrl(tab);
+});
+</script>
+</head>
+<body></body>
+</html>

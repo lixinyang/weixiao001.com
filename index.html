@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>微笑网 - 公益购物</title>
+<meta name="keywords" content="微笑网, 公益购物, 微笑公益购物, 公益, 慈善" />
+<meta name="description" content="微笑网公益购物让每个社区公民在不增加购物花费的同时为慈善事业进行捐赠。请各位笑友邀请更多好友加入社区！" />
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<link href="css/humanity/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/weixiao.js"></script>
+<script type="text/javascript">
+	function open_login_sina() {
+		window.open('/binding/sinaweibo/show', '_blank', 'width=600,height=400,scrollbars=yes,status=yes,resizable=yes,screenx=100,screeny=100');
+	}
+    function div_hover(){
+        $(".merchant-logo").hover(
+            function(){
+                $(this).removeClass("merchant-logo");
+                $(this).addClass("merchant-logo-hover");
+            },
+            function(){
+                $(this).removeClass("merchant-logo-hover");
+                $(this).addClass("merchant-logo");
+            }
+        );
+    }
+    function merchant_click(id) {
+    	var merchant = weixiao.merchant_list[id];
+    	if(weixiao.has_login()) {//已登录用户
+    		$( "#jump_to_merchant_splash" ).html('<p>您正在进入 “'+merchant.name+ '”... </p><p>本次购物所得将捐赠给 “' +weixiao.get_user().selected_project_name+ '”.</p>');
+    		$( "#jump_to_merchant_splash" ).dialog({
+    			resizable: false,
+    			width:500,
+    			modal: false
+    		});
+    		setTimeout(function() {
+    			location.href = merchant.url;
+    		},2000);
+    	}
+    	else {//未登录用户
+        	var button = {
+        			"以微博帐号登录": function() {
+        				$( this ).dialog( "close" );
+        				open_login_sina();
+        			}
+            	};
+        	var text = '进入 '+merchant.name+ ' ..';
+        	button[text] = function() {
+    			$( this ).dialog( "close" );
+    			location.href = merchant.url;
+    		};
+    		$( "#jump_to_merchant_popup" ).dialog({
+    			resizable: false,
+    			width:500,
+    			modal: true,
+    			buttons: button
+    		});
+    	}
+    }
+    function draw_merchant_list(wraper, filter) {
+    	var template = '<div id=\"merchant-logo-#merchant_id\" class=\"merchant-logo\">'
+					+ '<a href=\"javascript:void(0)\" onclick=\"merchant_click(\'#merchant_id\')\"><img src=\"#merchant_logo\" alt=\"#merchant_name\" /></a>'
+					+ '<p class=\"merchant-logo-text\"><a href=\"javascript:void(0)\" onclick=\"merchant_click(\'#merchant_id\')\">#merchant_name</a></p>'
+					+ '</div>';
+    	wraper.empty();
+        if(!filter) filter = ',';
+        list = weixiao.merchant_list;
+        for(web in list) {
+            if(list[web].keywords.indexOf(filter)!=-1) {
+            	var div = template.replace(/#merchant_id/g, web)
+            			.replace(/#merchant_name/g, list[web].name)
+            			.replace(/#merchant_logo/g, list[web].logo);
+            	wraper.append(div);
+            }
+        }
+    }
+    function load_latest_feedback() {
+		$.getJSON("/ajax/latest_feedback", function(json) {
+			$div = $('#latest_feedback');
+			$div.empty();
+			for(var i=0; i<json.length; i++) {
+				var post = json[i];
+				$div.append('<p>'+post.text+'</p>');
+			}
+		}).error(function() { 
+			//alert("ajax error: /ajax/latest_feedback"); 
+		});
+    }
+    function submit_feedback() {
+    	var text = $('#feedback_text').val();
+    	if(text.length===0) {
+        	alert('请输入反馈内容');
+        	return false;
+    	}
+    	else {
+    		weixiao.feedback(text, function(result) {
+    			if(result) {
+    				alert('反馈成功，感谢参与！');
+    				$('#feedback_text').val('');
+    				load_latest_feedback();
+    			}
+    			else {
+    				alert('反馈失败，请重试！');
+    			}
+    		});
+    		return false;
+    	}
+    }
+    $(function(){
+		$('#user_login').hide();
+		$('#user_not_login').hide();
+    	weixiao.init(function() {
+    		if(weixiao.has_login()) {
+    			$('#user_login').show();
+    			$('#user_name').text(weixiao.get_user().display_name);
+    			if(weixiao.get_user().selected_project_name) {
+    				$('#selected_project_name').text(weixiao.get_user().selected_project_name);
+    			}
+    			else {
+    				$('#selected_project_name').text('尚未设定');
+    			}
+    			$("#invited_info").text("成功邀请了" + weixiao.get_user().invited_count + "个好友,共捐款" + weixiao.get_user().invited_commision + "元");
+    		}
+    		else {
+    			$('#user_not_login').show();
+    		}
+    	});
+    	draw_merchant_list($('#merchant_list'),'');
+    	div_hover();
+    	$('#jump_to_merchant_popup').hide();
+    	$('#jump_to_merchant_splash').hide();
+    	load_latest_feedback();
+    });
+</script>
+</head>
+<body>
+<div id="header">
+	<a href="/"><h1>微笑网公益购物</h1></a>
+	<h2>你购物，我们捐款，公益很简单 </h2>
+</div>
+<div id="menu">
+	<ul>
+		<li><a href="/">首页</a></li>
+		<li><a href="/wp/gongyi/">公益项目</a></li>
+		<li><a href="/wp/zhangmu/">账目公示</a></li>
+		<li><a href="/order/all/">近期订单</a></li>
+	</ul>
+</div>
+<div id="content">
+	<div id="left">
+		<h2>公益购物的过程</h2>
+		<p>您在微笑网点击进入购物网站购物时，购物网站会将购物额的一部分返给微笑网，这就是慈善捐款的来源。</p>
+		<p>形象地讲，微笑网就是商场中的促销员，捐赠的就是引导您购物的促销费。</p>
+		<p><ul>
+		<li>至2011/7/3，我们已经有了11名笑友。</li>
+		<li>至2011/7/3，笑友们在京东商城已经有了389.44元可结算收入</li>
+		<li>预计我们将在7月25日~7月30日进行第一次结算和捐赠。</li>
+		</ul></p>
+		<h2>公益购物通道</h2>
+		<div id="merchant_list"></div>
+	</div>
+	<div id="right">
+		<div id="user_login">
+			你好，<span id="user_name"></span><span style="float:right"><a href="/setting/">个人设置</a></span>
+			<p>支持的项目：<span id="selected_project_name"></span><br/>
+			<span id="invited_info"></span><br/>
+			<span style="float:right"><a href="/welcome/logout">退出登录</a></span></p>
+		</div>
+		<div id="user_not_login">
+			<ul>
+			<li><a href='javascript:void(0);' onclick="open_login_sina()"><img src="images/weibo.png" alt="用新浪微博帐号登录" /></a></li>
+			</ul>
+		</div>
+		<div>
+			<p>邀请好友
+			<script type="text/javascript" charset="utf-8">
+			(function(){
+			  var _w = 106 , _h = 24;
+			  var param = {
+			    url:'http://weixiao001.com/',
+			    type:'5',
+			    count:'', /**是否显示分享数，1显示(可选)*/
+			    appkey:'3382333545', /**您申请的应用appkey,显示分享来源(可选)*/
+			    title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+			    pic:'', /**分享图片的路径(可选)*/
+			    ralateUid:'2176040087', /**关联用户的UID，分享微博会@该用户(可选)*/
+			    rnd:new Date().valueOf()
+			  }
+			  var temp = [];
+			  for( var p in param ){
+			    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+			  }
+			  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+			})()
+			</script></p>
+		</div>
+		<div id="feedback">
+			<label>有事儿您说话</label>
+			<div style="text-align: center"><textarea id="feedback_text" rows="3" cols="24"></textarea></div>
+			<div style="text-align: right">反馈内容将以微博发出<br/><input type="submit" value="发 送" onclick="submit_feedback()"/></div>
+			<div id="latest_feedback"></div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<ul>
+		<li><a href="/wp/about-us">关于我们</a></li>
+		<li><a href="/wp/contact-us">联系我们</a></li>
+		<li><a href="/wp/merchant/">购物网站</a></li>
+		<li><a href="/wp/dongtai/">微笑动态</a></li>
+		<li><a href="/wp/faq/">常见问题</a></li>
+		<li><a href="http://code.google.com/p/weixiao001/issues/list">Feature Request</a></li>
+	</ul>
+	<p>Copyright &copy; 2011 weixiao001.com. Designed by <a href="http://www.freecsstemplates.org" class="link1">Free CSS Templates</a>
+</p>
+</div>
+
+<!-- 下面都是隐藏的div -->
+<div id="jump_to_merchant_popup" title="慢走一步~~">
+	<p><span class="ui-icon ui-icon-info" style="float:left;"></span>您尚未登录微笑网。</p>
+	<p>先登录后购买，微笑网将捐赠您指定的公益项目。</p>
+</div>
+<div id="jump_to_merchant_splash" title="购物愉快~~"></div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24112444-1']);
+  _gaq.push(['_setDomainName', '.weixiao001.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
