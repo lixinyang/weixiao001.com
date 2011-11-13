@@ -1,0 +1,233 @@
+/*
+Theme Name: weixiao001.com
+Theme URI: http://weixiao001.com/
+Version: 0.1
+Description: 微笑网公益购物定制主题
+Author: <a href="http://www.lixinyang.com">李新阳</a>
+For the WordPress community (GPL), enjoy!
+
+*/
+
+
+fieldset,img { 
+	border:0;
+}
+
+/** BASIC */
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #777777;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-transform: lowercase;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #446EC0;
+}
+
+a {
+	text-decoration: none;
+	color: #F47511;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #446EC0;
+}
+
+table, th, td {
+  text-align:center;
+  font-size:1em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+}
+
+table {
+	width: 100%;
+	border-collapse:collapse;
+}
+
+th {
+  font-size:1.1em;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#ffffff;
+}
+
+/** HEADER */
+
+#header {
+	width: 978px;
+	margin: 0px auto;
+	padding: 20px 0px;
+}
+
+#header h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 24px;
+	color: #F47511;
+}
+
+#header h2 {
+	margin: 0px;
+	padding: 0px;
+	font-size: .8em;
+	color: #F47511;
+}
+
+/** MENU */
+
+#menu {
+	width: 978px;
+	margin: -40px auto 20px auto;
+	padding: 1px 0px 0px 0px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+#menu ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: right;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	padding: 0px 10px;
+	border: 1px solid #CCCCCC;
+	background-color: #FAFAFA;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#menu a:hover {
+	background-color: #446EC0;
+	color: #FFFFFF;
+}
+
+.menu_selected {
+	padding: 0px 10px;
+	border: 1px solid #CCCCCC;
+	text-decoration: none;
+	background-color: #446EC0;
+	color: #FFFFFF;
+}
+/** CONTENT */
+
+#content {
+	width: 978px;
+	margin: 0px auto;
+}
+
+#content h2 {
+	text-transform: uppercase;
+	font-style: normal;
+	font-size: 1.2em;
+	border-bottom: 2px dotted #CCCCCC;
+}
+
+#left {
+	float: left;
+	width: 800px;
+}
+
+#right {
+	float: right;
+	width: 150px;
+}
+
+/** FOOTER */
+
+#footer {
+	clear: both;
+	width: 978px;
+	margin: 0px auto;
+	padding: 20px 0px;
+}
+#footer ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: center;
+}
+
+#footer li {
+	display: inline;
+}
+
+#footer a {
+	text-decoration: underline;
+	font-size: small;
+	color: #999999;
+}
+
+#footer p {
+	margin: 0px;
+	border-top: 1px solid #CCCCCC;
+	text-align: center;
+	font-size: small;
+	color: #CCCCCC;
+}
+
+
+.merchant-logo {
+	float: left;
+	background: #E7E7E7;
+	border: 1px solid #BBBBBB;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	width: 130px;
+}
+.merchant-logo-hover {
+	float: left;
+	background: #EE00EE;
+	border: 1px solid #BBBBBB;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	width: 130px;
+}
+.merchant-logo-text {
+	text-align: center;
+	padding: 0 5px !important;
+	padding: 3px 5px 0;
+	margin: 0;
+}
+
+#user_login {
+	background: #EEEEEE;
+	border: 1px solid #CCCCCC;
+	padding: 5px 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#user_not_login {
+	background: #EEEEEE;
+	border: 1px solid #CCCCCC;
+	padding: 5px 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#feedback {
+	background: #EEEEEE;
+	border: 1px solid #CCCCCC;
+	padding: 5px 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}

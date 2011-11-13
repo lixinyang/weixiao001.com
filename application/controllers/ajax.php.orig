@@ -1,0 +1,65 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Ajax extends CI_Controller
+{
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('url','weibooauth','html'));
+		$this->load->model('usermanager');
+		$this->load->model('project');
+	}
+	
+	/**
+	 * 
+	 * 网站的首页
+	 */
+	public function current_user()
+	{
+		header("Content-Type: application/json; charset=utf-8", true);
+		if($this->weixiao->is_login())
+		{
+			$user = $this->weixiao->get_cur_user();
+			$project_id = $user->selected_project_id;
+			if(empty($project_id)) {
+				$project_id = "";
+				$project_name = "";
+			}
+			else {
+				$project = $this->project->get($project_id);
+				$project_name = $project->name;
+			}
+			
+			$ret = "{";
+			$ret .= "\"id\": \"".$user->id."\",";
+			$ret .= "\"user_token\": \"".$user->user_token."\",";
+			$ret .= "\"display_name\": \"".$user->display_name."\",";
+			$ret .= "\"selected_project_id\": \"".$project_id."\",";
+			$ret .= "\"selected_project_name\": \"".$project_name."\"";
+			$ret .= "}";
+			
+			echo $ret;
+		}
+		else
+		{
+			echo 'false';
+		}
+	}
+	
+	public function feedback() {
+		header("Content-Type: application/json; charset=utf-8", true);
+		$text = $_POST['text'];
+		$text = '@微笑网公益购物 '.$text;
+		if ($this->weixiao->is_login()) {
+			$user = $this->weixiao->get_cur_user();
+			$bindings = $this->usermanager->get_binding_by_uid($user->id);
+			$binding = $bindings[0];
+		}
+		else {
+			$c = new WeiboClient( WB_AKEY , WB_SKEY , DEFAULT_WB_TOKEN , DEFAULT_WB_TOKEN_SECRET);
+		}
+		$c->update($text);
+		echo 'true';
+	}
+	
+}
+?>
