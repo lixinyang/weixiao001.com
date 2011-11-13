@@ -27,6 +27,10 @@ a:hover {
 	color: #446EC0;
 }
 
+ul, li{  
+	line-height:22px;  
+}
+
 /** HEADER */
 
 #header {
