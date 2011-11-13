@@ -92,7 +92,7 @@ var weixiao = function() {
 		};
 	weblist['tmall'] = {
 			id: '5549',
-		    name: "淘宝商城（测试）",
+		    name: "淘宝商城",
 		    logo: "/images/merchants/tmall.jpg",
 		    url: "http://p.yiqifa.com/c?s=59c2eb34&w=351245&c=5549&i=12782&l=0&e=dddefault&t=http://www.tmall.com",
 		    domain: 'tmall.com',

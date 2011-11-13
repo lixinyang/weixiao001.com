@@ -119,7 +119,7 @@ class Ajax extends CI_Controller
 		header("Content-Type: application/json; charset=utf-8", true);
 		//取这个用户发的第一页前4条微博
 		$this->sina->init();
-		$res = $this->sina->user_timeline(1,4);
+		$res = $this->sina->user_timeline(1,3);
 		echo json_encode($res);
 	}
 }
