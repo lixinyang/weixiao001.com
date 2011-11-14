@@ -39,7 +39,7 @@ class Sinaweibo extends Bindbase {
 		$sns_oauth_token_secret = $last_key['oauth_token_secret'];
 		$sns_uid = $last_key['user_id'];
 		//var_dump($last_key);
-		error_log('haha'.$last_key);
+		error_log('haha'.print_r($last_key,true));
 		error_log($this->session->userdata('oauth_token'));
 		if(empty($sns_uid)) throw new Exception('oauth fail, havnt got getAccessToken()');
 		
