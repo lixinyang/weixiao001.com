@@ -46,9 +46,9 @@ class Jingdong extends CI_Controller
 				}
 				else {
 					if ($this->billing->get_order_jingdong(trim($col[0]),trim($col[1]))) {
-						$this->msg .= '订单'.$col[0].'<font color="yellow">已存在，跳过</font><br/>';
+						$this->msg .= '<font color="yellow">Warn, 该订单出现过</font><br/>';
 					}
-					else{
+					//else{
 						$order = array(
 							'order_no'=>trim($col[0]),
 							'order_create_time'=>trim($col[1]),
@@ -72,7 +72,7 @@ class Jingdong extends CI_Controller
 						$o->prod_money = $raw->order_money;
 						$this->billing->insert_order($o);
 						$this->msg .= $col[0].'保存成功<br/>';
-					}
+					//}
 				}
 			}
 		}
