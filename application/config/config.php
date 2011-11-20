@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://new.weixiao001.com/';
+$config['base_url']	= 'http://weixiao001.com/';
 
 /*
 |--------------------------------------------------------------------------
