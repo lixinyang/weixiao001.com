@@ -258,6 +258,7 @@ class Billing extends CI_Model
 		$current = date("Y-m-d H:i:s", time());
 		$order['create_time'] = $current;
 		$res = $this->db->insert(TBL_ORDER_JINGDONG, $order);
+		return $res;
 	}
 	/**
 	 * 
@@ -265,8 +266,8 @@ class Billing extends CI_Model
 	 * @param string $order_no
 	 * @param string $order_create_time
 	 */
-	function get_order_jingdong($order_no,$order_create_time) {
-		return $this->get_uniq(TBL_ORDER_JINGDONG, array('order_no'=>$order_no, 'order_create_time'=>$order_create_time));
+	function get_order_jingdong($order_no, $order_create_time, $order_money) {
+		return $this->get_uniq(TBL_ORDER_JINGDONG, array('order_no'=>$order_no, 'order_create_time'=>$order_create_time, 'order_money'=>$order_money));
 	}
 	function all_jingdong($page = 0, $length = 0) {
 		if(!$length) $length = 50;
