@@ -378,6 +378,7 @@ define( "TBL_USER" , 'wx_users' );
 define( "TBL_SNS_BINDING" , 'wx_sns_bindings' );
 define( "TBL_ORDER" , 'wx_orders' );
 define( "TBL_ORDER_SYNC" , 'wx_orders_sync' );
+define( "TBL_ORDER_JINGDONG" , 'wx_orders_jingdong' );
 define( "TBL_ORDER_CHANGELOG" , 'wx_orders_changelog' );
 define( "TBL_PROJECT" , 'wx_projects' );
 define( "TBL_RELATION" , 'wx_relations' );
