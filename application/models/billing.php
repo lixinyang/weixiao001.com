@@ -226,6 +226,8 @@ class Billing extends CI_Model
 		}
 		else { //已有这张订单的记录了，那么更新订单信息
 			if ($order->idraw_order != $raw->idraw_order) { //尚未更新过，更新的时候会把order的idraw_order字段换成新的raw_order的
+				if(empty($o->user_id) && !empty($order->user_id))
+					$o->user_id = $order->user_id;
 				$this->update_order($order, $o);
 			}
 			else { //已经更新过了。这在正常情况下不会出现
