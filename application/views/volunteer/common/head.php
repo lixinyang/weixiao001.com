@@ -18,5 +18,6 @@
 	<ul>
 		<li><a href="/">首页</a></li>
 		<li><a href="/volunteer/user/all/">用户管理</a></li>
+		<li><a href="/volunteer/jingdong/">导入京东订单</a></li>
 	</ul>
 </div>

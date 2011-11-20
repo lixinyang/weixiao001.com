@@ -234,10 +234,13 @@ class Billing extends CI_Model
 		}
 	}
 	
-	function all($page = 0, $length = 0) {
+	function all($page = 0, $length = 0, $from='') {
 		if(!$length) $length = 50;
 
 		$this->db->order_by("order_time", "desc");
+		if(!empty($from)) {
+			$this->db->where('from',$from);
+		}
 		$query = $this->db->get(TBL_ORDER , $length , $page*$length);
 		
 		return $query->result();
@@ -245,6 +248,37 @@ class Billing extends CI_Model
 	function count_all() {
 		return $this->db->count_all_results(TBL_ORDER);
 	}
-
+	
+	/**
+	 * 
+	 * 将订单写入订单变动记录表
+	 * @param stdClass $order
+	 */
+	function insert_order_jingdong($order) {
+		$current = date("Y-m-d H:i:s", time());
+		$order['create_time'] = $current;
+		$res = $this->db->insert(TBL_ORDER_JINGDONG, $order);
+	}
+	/**
+	 * 
+	 * 根据京东订单号和京东的“下单时间”来找京东订单
+	 * @param string $order_no
+	 * @param string $order_create_time
+	 */
+	function get_order_jingdong($order_no,$order_create_time) {
+		return $this->get_uniq(TBL_ORDER_JINGDONG, array('order_no'=>$order_no, 'order_create_time'=>$order_create_time));
+	}
+	function all_jingdong($page = 0, $length = 0) {
+		if(!$length) $length = 50;
+	
+		$this->db->order_by("order_create_time", "desc");
+		$query = $this->db->get(TBL_ORDER_JINGDONG , $length , $page*$length);
+	
+		return $query->result();
+	}
+	function count_all_jingdong() {
+		return $this->db->count_all_results(TBL_ORDER_JINGDONG);
+	}
+	
 }
 ?>

@@ -238,6 +238,20 @@ class Weixiao
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * 判断一个用户是否是admin用户
+	 * @param unknown_type $user
+	 */
+	public function is_admin($user) {
+		if(empty($user) || $user->id != '100000') { //TODO 这个权限控制应该改为数据库TBL_USER表的is_admin字段
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 }
 ?>

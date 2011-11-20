@@ -1,24 +1,4 @@
 <div id="content">
-<style>
-table, th, td {
-  text-align:center;
-  font-size:1em;
-  border:1px solid #98bf21;
-  padding:3px 7px 2px 7px;
-}
-table {
-	width: 100%;
-	border-collapse:collapse;
-}
-
-th {
-  font-size:1.1em;
-  padding-top:5px;
-  padding-bottom:4px;
-  background-color:#A7C942;
-  color:#ffffff;
-}
-</style>
 <table>
 <tr>
 <th>用户ID</th>

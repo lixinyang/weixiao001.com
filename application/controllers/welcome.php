@@ -46,7 +46,7 @@ class Welcome extends CI_Controller
 			if ($pid){
 				$data['project'] = $this->project->get($pid)->name;
 			}
-			$this->load->view('setting', $data);
+			$this->load->view('home', $data);
 			$this->load->view('/common/right', $data);
 		}
 		else
