@@ -25,7 +25,7 @@ class Jingdong extends CI_Controller
 	
 	public function add() {
 		$cur_user = $this->weixiao->get_cur_user();
-		if($this->weixiao->is_admin($cur_user)) {
+		if!($this->weixiao->is_admin($cur_user)) {
 			echo '禁止访问，未登录或者非管理员帐号！请登录。';
 			return ;
 		}
