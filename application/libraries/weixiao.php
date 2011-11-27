@@ -102,6 +102,9 @@ class Weixiao
 				$this->refresh_friends($friends , $binding->friends);
 			}
 			$this->ci->usermanager->update_binding($binding->id, $values);
+			$user = $this->get_cur_user();
+			$user->display_name = $sina['screen_name'];
+			$this->ci->usermanager->update_user($user->id, $user);
 		}
 	}
 	
