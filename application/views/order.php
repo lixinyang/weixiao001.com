@@ -21,7 +21,7 @@ if(!empty($user)) {
 }
 if(empty($user)) $user_string = '--';
 elseif (empty($sns)) $user_string = $user->display_name;
-else $user_string = '<a href="http://weibo.com/u/'.$sns->sns_uid.'">'.$user->display_name.'</a>';
+else $user_string = '<a href="http://weibo.com/u/'.$sns->sns_uid.'" target="_blank">'.$user->display_name.'</a>';
 ?>
 <tr id='order-<?php echo $order->idwx_orders;?>'>
 <td><?php echo $this->weixiao->get_merchant_name($order->action_id);?></td>
