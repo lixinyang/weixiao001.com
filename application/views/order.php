@@ -1,23 +1,3 @@
-<style>
-table, th, td {
-  text-align:center;
-  font-size:1em;
-  border:1px solid #98bf21;
-  padding:3px 7px 2px 7px;
-}
-table {
-	width: 100%;
-	border-collapse:collapse;
-}
-
-th {
-  font-size:1.1em;
-  padding-top:5px;
-  padding-bottom:4px;
-  background-color:#A7C942;
-  color:#ffffff;
-}
-</style>
 <?php echo $split_page; ?>
 <table>
 <tr>
@@ -34,7 +14,14 @@ if($status == 'A') $status = '成功订单';
 if($status == 'R') $status = '未确认';
 if($status == 'F') $status = '无效订单';
 $user = $order->user_id;
-if(!empty($user)) $user = $this->usermanager->get_by_id($user);
+if(!empty($user)) {
+	$sns = $this->usermanager->get_binding($user, UserManager::sns_website_sina);
+	$user = $this->usermanager->get_by_id($user);
+	$user_string = '';
+}
+if(empty($user)) $user_string = '--';
+elseif (empty($sns)) $user_string = $user->display_name;
+else $user_string = '<a href="http://weibo.com/u/'.$sns->sns_uid.'">'.$user->display_name.'</a>';
 ?>
 <tr id='order-<?php echo $order->idwx_orders;?>'>
 <td><?php echo $this->weixiao->get_merchant_name($order->action_id);?></td>
@@ -42,7 +29,7 @@ if(!empty($user)) $user = $this->usermanager->get_by_id($user);
 <td><?php echo $order->order_time;?></td>
 <td><?php echo $status;?></td>
 <td><?php echo $order->commision;?></td>
-<td><?php echo empty($user)?'--':$user->display_name;?></td>
+<td><?php echo $user_string;?></td>
 </tr>
 <?php }?>
 </table>
