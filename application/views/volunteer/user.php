@@ -1,4 +1,5 @@
 <div id="content">
+<?php echo $split_page; ?>
 <table>
 <tr>
 <th>用户ID</th>
@@ -29,5 +30,6 @@
 </tr>
 <?php }?>
 </table>
+<?php echo $split_page; ?>
 <p>*注意保护用户隐私*</p>
 </div>

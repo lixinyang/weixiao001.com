@@ -220,8 +220,8 @@ class UserManager extends CI_Model
 	/**
 	 * 
 	 * 获得用户列表
-	 * @param unknown_type $page
-	 * @param unknown_type $length
+	 * @param int $page
+	 * @param int $length
 	 */
 	function all($page = 0, $length = 0) {
 		if(!$length) $length = 50;
@@ -230,6 +230,9 @@ class UserManager extends CI_Model
 		$query = $this->db->get(TBL_USER , $length , $page*$length);
 		
 		return $query->result();
+	}
+	function count_all() {
+		return $this->db->count_all_results(TBL_USER);
 	}
 	
 	function find_invited_users($uid)
