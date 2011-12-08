@@ -29,7 +29,7 @@ class User extends CI_Controller
 		$this->pagination->initialize($config);
 		$split_page = $this->pagination->create_links();
 		
-		$users = $this->usermanager->all($page, $length);
+		$users = $this->usermanager->all($page/50, $length);
 		$this->load->view('/volunteer/user', array('users' => $users, 'split_page' => $split_page));
 		
 		$this->load->view('/volunteer/common/footer', array('before_end_body' => ''));
