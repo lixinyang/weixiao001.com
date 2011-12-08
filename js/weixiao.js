@@ -28,6 +28,23 @@ var weixiao = function() {
 	    domain: 'dangdang.com',
 	    keywords: "dd,dangdang,当当"
 	};
+	weblist['vancl'] = {
+			id: '255',
+		    name: "凡客诚品",
+		    logo: "/images/merchants/vancl.jpg",
+		    //url: "http://p.yiqifa.com/c?s=b32f3f96&w=317782&c=255&i=150&l=0&e=dddefault&t=http://www.vancl.com",
+		    url: "http://p.yiqifa.com/c?s=d2658224&w=351245&c=255&i=150&l=0&e=dddefault&t=http://www.vancl.com",
+		    domain: '360buy.com',
+		    keywords: "fk,vk,vancl,凡客,凡客诚品"
+		};
+	weblist['tmall'] = {
+			id: '5549',
+		    name: "淘宝商城",
+		    logo: "/images/merchants/tmall.jpg",
+		    url: "http://p.yiqifa.com/c?s=59c2eb34&w=351245&c=5549&i=12782&l=0&e=dddefault&t=http://www.tmall.com",
+		    domain: 'tmall.com',
+		    keywords: "taobao,tb,tmall,淘宝商城"
+		};
 	weblist['newegg'] = {
 			id: '280',
 		    name: "新蛋网",
@@ -55,14 +72,13 @@ var weixiao = function() {
 		    domain: 'binggo.com',
 		    keywords: "hhz,honghaizi,redbaby,红孩子"
 		};
-	weblist['vancl'] = {
-			id: '255',
-		    name: "凡客诚品",
-		    logo: "/images/merchants/vancl.jpg",
-		    //url: "http://p.yiqifa.com/c?s=b32f3f96&w=317782&c=255&i=150&l=0&e=dddefault&t=http://www.vancl.com",
-		    url: "http://p.yiqifa.com/c?s=d2658224&w=351245&c=255&i=150&l=0&e=dddefault&t=http://www.vancl.com",
-		    domain: '360buy.com',
-		    keywords: "fk,vk,vancl,凡客,凡客诚品"
+	weblist['yihaodian'] = {
+			id: '139',
+		    name: "一号店",
+		    logo: "/images/merchants/yihaodian.jpg",
+		    url: "http://p.yiqifa.com/c?s=f3a89475&w=351245&c=139&i=802&l=0&e=dddefault&t=http://www.yihaodian.com/product/index.do",
+		    domain: 'yihaodian.com',
+		    keywords: "yhd,yihaodian,一号店"
 		};
 	weblist['womai'] = {
 			id: '4102',
@@ -73,15 +89,6 @@ var weixiao = function() {
 		    domain: 'vancl.com',
 		    keywords: "wm,womai,我买,我买网"
 		};
-	weblist['gaopeng'] = {
-		id: '5434',
-	    name: "高鹏团购",
-	    logo: "/images/merchants/gaopeng.png",
-	    //url: "http://p.yiqifa.com/c?s=e2454e20&w=317782&c=5434&i=11822&l=0&e=dddefault&t=http://www.gaopeng.com",
-	    url: "http://p.yiqifa.com/c?s=0dbe0de0&w=351245&c=5434&i=11822&l=0&e=dddefault&t=http://www.gaopeng.com",
-	    domain: 'gaopeng.com',
-	    keywords: "gp,高朋,gaopeng,groupon"
-	};
 	weblist['lafaso'] = {
 			id: '227',
 		    name: "乐蜂网",
@@ -89,14 +96,6 @@ var weixiao = function() {
 		    url: "http://p.yiqifa.com/c?s=442247b6&w=351245&c=227&i=196&l=0&e=dddefault&t=http://www.lafaso.com/",
 		    domain: 'lafaso.com',
 		    keywords: "lafaso,lefeng,lf,乐蜂,乐蜂网"
-		};
-	weblist['tmall'] = {
-			id: '5549',
-		    name: "淘宝商城",
-		    logo: "/images/merchants/tmall.jpg",
-		    url: "http://p.yiqifa.com/c?s=59c2eb34&w=351245&c=5549&i=12782&l=0&e=dddefault&t=http://www.tmall.com",
-		    domain: 'tmall.com',
-		    keywords: "taobao,tb,tmall,淘宝商城"
 		};
         weblist['vipshop'] = {
                         id: '4018',
@@ -106,12 +105,21 @@ var weixiao = function() {
                     domain: 'vipshop.com',
                     keywords: "weipinhui,vipshop,唯品会"
                 };
+/*    	weblist['gaopeng'] = {
+    			id: '5434',
+    		    name: "高鹏团购",
+    		    logo: "/images/merchants/gaopeng.png",
+    		    //url: "http://p.yiqifa.com/c?s=e2454e20&w=317782&c=5434&i=11822&l=0&e=dddefault&t=http://www.gaopeng.com",
+    		    url: "http://p.yiqifa.com/c?s=0dbe0de0&w=351245&c=5434&i=11822&l=0&e=dddefault&t=http://www.gaopeng.com",
+    		    domain: 'gaopeng.com',
+    		    keywords: "gp,高朋,gaopeng,groupon"
+    		};*/
         weblist['dianping'] = {
                 id: '6198',
             name: "点评团",
-            logo: "/images/merchants/dianping.png",
+            logo: "/images/merchants/dianping.jpg",
             url: "http://p.yiqifa.com/c?s=5d97ce71&w=351245&c=6198&i=17902&l=0&e=dddefault&t=http://t.dianping.com",
-            domain: 'vipshop.com',
+            domain: 'dianping.com',
             keywords: "dianping,dp,点评团"
         };
 	
