@@ -6,6 +6,7 @@ class User extends CI_Controller
 		parent::__construct();
 		$this->load->model('billing');
 		$this->load->model('usermanager');
+		$this->load->library('pagination');
 	}
 	
 	public function all($page = 0, $length = 0) {
