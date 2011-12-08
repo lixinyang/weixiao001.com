@@ -106,6 +106,14 @@ var weixiao = function() {
                     domain: 'vipshop.com',
                     keywords: "weipinhui,vipshop,唯品会"
                 };
+        weblist['dianping'] = {
+                id: '6198',
+            name: "点评团",
+            logo: "/images/merchants/dianping.png",
+            url: "http://p.yiqifa.com/c?s=5d97ce71&w=351245&c=6198&i=17902&l=0&e=dddefault&t=http://t.dianping.com",
+            domain: 'vipshop.com',
+            keywords: "dianping,dp,点评团"
+        };
 	
 	var hasLogin = false;
 	var user = {
